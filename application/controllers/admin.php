@@ -16,9 +16,18 @@ class Admin extends CI_Controller {
     {
         $this->load->helper('url');
         $this->load->model('usuario');
-        // $data['usuarios'] = $this->usuario->get(1);
-        var_dump($this->usuario->get($id));
-        // $this->load->view('home_admin', $data);
+        $data['usuario'] = $this->usuario->get($id);
+        $this->load->view('user_details', $data);
+    }
+
+    public function user_delete($id)
+    {
+        $this->load->helper('url');
+        $this->load->model('usuario');
+        $this->usuario->delete($id);
+        $this->index();
+        // redirect('/login/form/');
+        // $this->load->view('user_details', $data);
     }
 
     public function test()
@@ -27,6 +36,56 @@ class Admin extends CI_Controller {
         // $this->origen->insert('MAIPU','SANTIAGO','PARTICULAR');
 		$this->usuario->insert('test','test', 1, 1);
         echo 'usuario de prueba insertado';
+    }
+
+    public function new_user()
+    {
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $this->load->model('origen');
+        $data['origenes'] = $this->origen->get_all();
+        $this->load->view('add_user_form', $data);
+    }
+
+    public function insert_user()
+    {
+        $this->load->helper('url');
+        $this->load->model('usuario');
+        // $this->log->insert();
+        $usuario = $this->input->post('usuario');
+        $password = $this->input->post('password');
+        $origen = $this->input->post('origen');
+        $perfil = $this->input->post('perfil');
+		$this->usuario->insert($usuario,$password, $origen, $perfil);
+        $this->load->view('success_user_add');
+    }
+
+    public function user_edit($id)
+    {
+        $this->load->helper(array('url', 'form'));
+        $this->load->model('usuario');
+        $this->load->model('origen');
+        $data['origenes'] = $this->origen->get_all();
+        $data['usuario'] = $this->usuario->get($id);
+        $data['perfiles'] = array(
+            '1' => 'Administrador',
+            '2' => 'Usuario normal'
+        );
+        $this->load->view('edit_user_form', $data);
+    }
+
+    public function update_user()
+    {
+        $this->load->helper('url');
+        $this->load->model('usuario');
+        // $this->log->insert();
+        $id = $this->input->post('id');
+        $usuario = $this->input->post('usuario');
+        $password = $this->input->post('password');
+        $origen = $this->input->post('origen');
+        $perfil = $this->input->post('perfil');
+		$this->usuario->update($id, $usuario, $password, $origen, $perfil);
+        $this->load->view('success_user_edit');
     }
 
 }

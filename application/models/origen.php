@@ -16,4 +16,10 @@ class Origen extends CI_Model {
             $this->db->insert($this->tabla, $this);
     }
 
+    public function get_all()
+    {
+        $query = $this->db->get($this->tabla);
+        return $query->result();
+    }
+
 }

@@ -1,4 +1,26 @@
 # base de datos
+
+## valores de prueba
+INSERT INTO bdd_william_lopez.origen
+(id, comuna, direccion, tipo)
+VALUES(1, 'MAIPU', 'SANTIAGO', 'PARTICULAR');
+INSERT INTO bdd_william_lopez.origen
+(id, comuna, direccion, tipo)
+VALUES(2, 'prueba', 'prueba', '1');
+INSERT INTO bdd_william_lopez.origen
+(id, comuna, direccion, tipo)
+VALUES(3, 'prueba', 'prueba', '1');
+
+
+INSERT INTO bdd_william_lopez.usuarios
+(id, usuario, pass, origen, perfil)
+VALUES(2, 'prueba', 'prueba', 1, 1);
+INSERT INTO bdd_william_lopez.usuarios
+(id, usuario, pass, origen, perfil)
+VALUES(3, 'test', 'test', 1, 1);
+
+
+## tablas
 CREATE TABLE `log` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `INICIO_SESION` timestamp NOT NULL DEFAULT current_timestamp(),

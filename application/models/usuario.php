@@ -46,4 +46,22 @@ class Usuario extends CI_Model {
         return $query->result();
     }
 
+    public function delete($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete($this->tabla);
+    }
+
+    public function update($id, $usuario, $pass, $origen, $perfil)
+    {
+        $data = array(
+            'id' => $id,
+            'usuario'  => $usuario,
+            'pass'  => $pass,
+            'origen'  => $origen,
+            'perfil'  => $perfil,
+    );
+        $this->db->replace($this->tabla, $data);
+    }
+
 }

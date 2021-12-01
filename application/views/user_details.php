@@ -117,43 +117,25 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                Mantenedor Usuarios
+                                Datos Usuario
                             </div>
                             <div class="card-body">
-                                <?php echo anchor('admin/new_user/', 'Agregar usuario');?>
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Usuario</th>
-                                            <th>Password</th>
-                                            <th>Origen</th>
-                                            <th>Perfil</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Usuario</th>
-                                            <th>Password</th>
-                                            <th>Origen</th>
-                                            <th>Perfil</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <?php foreach($usuarios as $usuario) {?>
-                                            <tr>
-                                                <td><?php echo $usuario->id ?></td>
-                                                <td>
-                                                    <?php echo anchor('admin/user/'.$usuario->id, $usuario->usuario);?>
-                                                </td>
-                                                <td><?php echo $usuario->pass ?></td>
-                                                <td><?php echo $usuario->comuna ?></td>
-                                                <td><?php echo $usuario->perfil ?></td>
-                                            </tr>
-                                        <?php }?>
-                                    </tbody>
-                                </table>
+                                usuario:
+                                <?php echo $usuario[0]->usuario;?>
+                                <br>
+                                contrasena:
+                                <?php echo $usuario[0]->pass;?>
+                                <br>
+                                comuna:
+                                <?php echo $usuario[0]->comuna;?>
+                                <br>
+                                perfil:
+                                <?php echo $usuario[0]->perfil;?>
+                                <br>
+                                <?php echo anchor('admin/user_edit/'.$usuario[0]->id, 'Editar');?>
+                                <?php echo anchor('admin/user_delete/'.$usuario[0]->id, 'Eliminar');?>
+                                <br>
+                                <?php echo anchor('admin/', 'Volver');?>
                             </div>
                         </div>
                     </div>
