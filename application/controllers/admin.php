@@ -25,17 +25,9 @@ class Admin extends CI_Controller {
         $this->load->helper('url');
         $this->load->model('usuario');
         $this->usuario->delete($id);
+        $usuario_logueado = '';
+        $this->log->insert('se borra el usuario id='.$id, $usuario_logueado);
         $this->index();
-        // redirect('/login/form/');
-        // $this->load->view('user_details', $data);
-    }
-
-    public function test()
-    {
-        $this->load->model('usuario');
-        // $this->origen->insert('MAIPU','SANTIAGO','PARTICULAR');
-		$this->usuario->insert('test','test', 1, 1);
-        echo 'usuario de prueba insertado';
     }
 
     public function new_user()
@@ -57,9 +49,12 @@ class Admin extends CI_Controller {
         $origen = $this->input->post('origen');
         $perfil = $this->input->post('perfil');
 		$this->usuario->insert($usuario,$password, $origen, $perfil);
+        $usuario_logueado = '';
+        $this->log->insert('se crea el usuario='.$usuario, $usuario_logueado);
         $this->load->view('success_user_add');
     }
 
+    // carga formulario select
     public function user_edit($id)
     {
         $this->load->helper(array('url', 'form'));
@@ -74,10 +69,11 @@ class Admin extends CI_Controller {
         $this->load->view('edit_user_form', $data);
     }
 
+    // guarda la info del formulario en la bd update
     public function update_user()
     {
         $this->load->helper('url');
-        $this->load->model('usuario');
+        $this->load->model(array('usuario', 'log'));
         // $this->log->insert();
         $id = $this->input->post('id');
         $usuario = $this->input->post('usuario');
@@ -85,7 +81,15 @@ class Admin extends CI_Controller {
         $origen = $this->input->post('origen');
         $perfil = $this->input->post('perfil');
 		$this->usuario->update($id, $usuario, $password, $origen, $perfil);
+        $usuario_logueado = '';
+        $this->log->insert('se modifica el usuario id='.$id, $usuario_logueado);
         $this->load->view('success_user_edit');
+    }
+
+    public function login()
+    {
+        // $usuario_logueado = '';
+        // $this->log->insert('inicia sesion el usuario='.$usuario, $usuario_logueado);
     }
 
 }
