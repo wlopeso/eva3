@@ -1,0 +1,60 @@
+header{
+    display: grid;
+    grid-template-columns:2fr 8fr;
+    background-color: azure;
+}
+
+nav{
+    padding-top: 50px;
+}
+
+ul{
+    display: flex;
+    padding-left: 20px;
+    justify-content: flex-end;
+    margin: 0 auto;
+    
+}
+.subrayar:hover{
+    background-color: yellow;
+}
+
+li{
+    margin: 20px;
+    list-style:none;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+
+.alinear{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.columnas{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    height: 90%;
+    align-items: center;
+}
+.display-inline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#conform{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 500px
+}
