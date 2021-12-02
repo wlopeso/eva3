@@ -129,7 +129,7 @@ class CI_DB_pdo_sqlsrv_driver extends CI_DB_pdo_driver {
 
 			empty($this->APP) OR $this->dsn .= ';APP='.$this->APP;
 			empty($this->Failover_Partner) OR $this->dsn .= ';Failover_Partner='.$this->Failover_Partner;
-			empty($this->LoginTimeout) OR $this->dsn .= ';LoginTimeout='.$this->LoginTimeout;
+			empty($this->vigiainTimeout) OR $this->dsn .= ';LoginTimeout='.$this->vigiainTimeout;
 			empty($this->MultipleActiveResultSets) OR $this->dsn .= ';MultipleActiveResultSets='.$this->MultipleActiveResultSets;
 			empty($this->TraceFile) OR $this->dsn .= ';TraceFile='.$this->TraceFile;
 			empty($this->WSID) OR $this->dsn .= ';WSID='.$this->WSID;

@@ -44,7 +44,6 @@
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Menu</div>
                             <?php echo anchor('admin/', '<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>Dashboard', 'class="nav-link"');?>
-                            <?php echo anchor('admin/new_user/', '<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>Agregar usuario', 'class="nav-link"');?>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
@@ -56,48 +55,42 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard Admin</h1>
+                        <h1 class="mt-4">Dashboard Vigia</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard Admin</li>
+                            <li class="breadcrumb-item active">Dashboard Vigia</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                Mantenedor Usuarios
+                                Bitacora (log)
                             </div>
                             <div class="card-body">
-                                <?php echo anchor('admin/new_user/', 'Agregar usuario');?>
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
+                                        <th>Id</th>
+                                            <th>Accion</th>
                                             <th>Usuario</th>
-                                            <th>Password</th>
-                                            <th>Origen</th>
-                                            <th>Perfil</th>
+                                            <th>Creado En </th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>Id</th>
+                                            <th>Accion</th>
                                             <th>Usuario</th>
-                                            <th>Password</th>
-                                            <th>Origen</th>
-                                            <th>Perfil</th>
+                                            <th>Creado En </th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <?php foreach($usuarios as $usuario) {?>
+                                        <?php foreach($vigias as $vigia) {?>
                                             <tr>
-                                                <td><?php echo $usuario->id ?></td>
-                                                <td>
-                                                    <?php echo anchor('admin/user/'.$usuario->id, $usuario->usuario);?>
-                                                </td>
-                                                <td><?php echo $usuario->pass ?></td>
-                                                <td><?php echo $usuario->comuna ?></td>
-                                                <td><?php echo $usuario->perfil ?></td>
+                                                <td><?php echo $vigia->id ?></td>
+                                                <td><?php echo $vigia->accion ?></td>
+                                                <td><?php echo $vigia->usuario ?></td>
+                                                <td><?php echo $vigia->creado_en ?></td>
                                             </tr>
-                                        <?php }?>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
