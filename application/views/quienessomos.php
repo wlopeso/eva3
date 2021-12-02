@@ -19,14 +19,24 @@
         </div>
         <nav class="col-md-7">
             <ul>
-                <li class="subrayar">
-                    <?php echo anchor('usuario','HOME');?>
+            <li class="subrayar">
+                    <?php echo anchor('c_usuario','HOME');?>
                 </li>
                 <li class="subrayar">
-                    <?php echo anchor('usuario','Login');?>
+                    <?php 
+                    if(isset($this->session->usuario))
+                    { 
+                        echo anchor('c_usuario/logout','('.$this->session->usuario.') Logout'); 
+                    } else {
+                        echo anchor('c_usuario/login','Login');
+                    }
+                    ?>                    
                 </li>
                 <li class="subrayar">
-                    <?php echo anchor('usuario/quienes_somos','Quienes Somos');?>
+                <?php echo anchor('c_usuario/quienes_somos','Quienes Somos');?>
+                </li>
+                <li class="subrayar">
+                    <?php echo anchor('https://www.dimerc.cl/','Los Otros');?>
                 </li>
             </ul>
         </nav>
@@ -34,14 +44,21 @@
         <div class="container">
             <div class="row">
                 <div class="col-4">
-                    <li class="subrayar">
-                        <?php echo anchor('usuario','HOME');?>
+                <li class="subrayar">
+                    <?php echo anchor('c_usuario','HOME');?>
                     </li>
                     <li class="subrayar">
-                        <?php echo anchor('login','Login');?>
+                    <?php 
+                    if(isset($this->session->usuario))
+                    { 
+                        echo anchor('c_usuario/logout','('.$this->session->usuario.') Logout'); 
+                    } else {
+                        echo anchor('c_usuario/login','Login');
+                    }
+                    ?>
                     </li>
                     <li class="subrayar">
-                    <?php echo anchor('usuario/quienes_somos','Quienes Somos');?>
+                    <?php echo anchor('c_usuario/quienes_somos','Quienes Somos');?>
                     </li>
                 </div>
                     <main class="col-md-5">

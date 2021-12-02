@@ -76,6 +76,7 @@ class Usuario extends CI_Model {
             //usuario valido
             $user_db_data = $result->result();
             $newdata = array(
+                'id' => $user_db_data[0]->id,
                 'usuario' => $user_db_data[0]->usuario,
                 'perfil' => $user_db_data[0]->perfil,
                 'logged_in' => TRUE

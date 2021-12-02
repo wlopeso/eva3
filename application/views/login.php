@@ -35,7 +35,7 @@
                                         <?php echo form_close(); ?>
                                     </div>
                                     <div class="card-footer text-center py-3">
-                                        <div class="small"></div>
+                                        <div class="small"><?php echo anchor('c_usuario','Sitio Web');?></div>
                                     </div>
                                 </div>
                             </div>

@@ -30,15 +30,15 @@ class C_usuario extends CI_Controller {
         $usuario = $this->input->post('usuario');
         $password = $this->input->post('password');
 
-        $this->load->model(array('usuario' => 'user'));
+        $this->load->model(array('usuario' => 'user', 'vigia' => 'vigia'));
         $login = $this->user->login($usuario, $password);
 
         if($login){
-            // $this->log->insert('inicia sesion el usuario='.$usuario, $this->session->usuario);
+            $this->vigia->insert('inicia sesion el usuario='.$usuario, (int)$this->session->id);
             if($this->session->perfil == '1'){
                 redirect('/admin/index/');
             } else {
-                $this->index();
+                redirect('/c_usuario');
             }
         } else {
             $this->login();
@@ -48,6 +48,8 @@ class C_usuario extends CI_Controller {
 
     public function logout()
     {
+        $this->load->model('vigia');
+        $this->vigia->insert('cierra sesion el usuario='.$this->session->usuario, (int)$this->session->id);
         $this->session->sess_destroy();
         $this->login();
     }

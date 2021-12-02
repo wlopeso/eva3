@@ -5,7 +5,7 @@ class Admin extends CI_Controller {
 
     public function index()
     {
-        # code...
+        $this->_check_session();
         $this->load->helper('url');
         $this->load->model('usuario');
         $data['usuarios'] = $this->usuario->get_all_info();
@@ -14,6 +14,7 @@ class Admin extends CI_Controller {
 
     public function user($id)
     {
+        $this->_check_session();
         $this->load->helper('url');
         $this->load->model('usuario');
         $data['usuario'] = $this->usuario->get($id);
@@ -24,14 +25,14 @@ class Admin extends CI_Controller {
     {
         $this->load->helper('url');
         $this->load->model(array('usuario', 'vigia'));
-        $usuario_logueado = 2;
-        $this->vigia->insert('se borra el usuario id='.$id, $usuario_logueado);
+        $this->vigia->insert('se borra el usuario id='.$id, $this->session->id);
         $this->usuario->delete($id);
         $this->index();
     }
 
     public function new_user()
     {
+        $this->_check_session();
         $this->load->helper('url');
         $this->load->helper('form');
         $this->load->model('origen');
@@ -41,6 +42,7 @@ class Admin extends CI_Controller {
 
     public function insert_user()
     {
+        $this->_check_session();
         $this->load->helper('url');
         $this->load->model('usuario');
         $this->load->model('vigia');
@@ -49,14 +51,14 @@ class Admin extends CI_Controller {
         $origen = $this->input->post('origen');
         $perfil = $this->input->post('perfil');
 		$this->usuario->insert($usuario,$password, $origen, $perfil);
-        $usuario_logueado = 2;
-        $this->vigia->insert('se crea el usuario='.$usuario, $usuario_logueado);
+        $this->vigia->insert('se crea el usuario='.$usuario, $this->session->id);
         $this->load->view('success_user_add');
     }
 
     // carga formulario select
     public function user_edit($id)
     {
+        $this->_check_session();
         $this->load->helper(array('url', 'form'));
         $this->load->model('usuario');
         $this->load->model('origen');
@@ -72,6 +74,7 @@ class Admin extends CI_Controller {
     // guarda la info del formulario en la bd update
     public function update_user()
     {
+        $this->_check_session();
         $this->load->helper('url');
         $this->load->model(array('usuario', 'vigia'));
         // $this->vigia->insert();
@@ -81,16 +84,24 @@ class Admin extends CI_Controller {
         $origen = $this->input->post('origen');
         $perfil = $this->input->post('perfil');
 		$this->usuario->update($id, $usuario, $password, $origen, $perfil);
-        $usuario_logueado = 2;
-        $this->vigia->insert('se modifica el usuario id='.$id, $usuario_logueado);
+        $this->vigia->insert('se modifica el usuario id='.$id, $this->session->id);
         $this->load->view('success_user_edit');
     }
 
     public function bitacora()
     {
+        $this->_check_session();
         $this->load->helper('url');
         $this->load->model('vigia');
         $data['vigias'] = $this->vigia->get_all_vigia();
         $this->load->view('home_log', $data);
+    }
+
+    public function _check_session()
+    {
+        $this->load->helper('url');
+        if($this->session->perfil != '1'){
+            redirect('/c_usuario');
+        }
     }
 }

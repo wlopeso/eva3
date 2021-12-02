@@ -20,13 +20,20 @@
         <nav class="col-md-7">
             <ul>
                 <li class="subrayar">
-                    <?php echo anchor('usuario','HOME');?>
+                    <?php echo anchor('c_usuario','HOME');?>
                 </li>
                 <li class="subrayar">
-                    <?php echo anchor('usuario/login','Login');?>
+                    <?php 
+                    if(isset($this->session->usuario))
+                    { 
+                        echo anchor('c_usuario/logout','('.$this->session->usuario.') Logout'); 
+                    } else {
+                        echo anchor('c_usuario/login','Login');
+                    }
+                    ?>                    
                 </li>
                 <li class="subrayar">
-                <?php echo anchor('usuario/quienes_somos','Quienes Somos');?>
+                <?php echo anchor('c_usuario/quienes_somos','Quienes Somos');?>
                 </li>
                 <li class="subrayar">
                     <?php echo anchor('https://www.dimerc.cl/','Los Otros');?>
@@ -38,13 +45,20 @@
             <div class="row">
                 <div class="col-4">
                     <li class="subrayar">
-                    <?php echo anchor('usuario','HOME');?>
+                    <?php echo anchor('c_usuario','HOME');?>
                     </li>
                     <li class="subrayar">
-                    <?php echo anchor('usuario/login','Login');?>
+                    <?php 
+                    if(isset($this->session->usuario))
+                    { 
+                        echo anchor('c_usuario/logout','('.$this->session->usuario.') Logout'); 
+                    } else {
+                        echo anchor('c_usuario/login','Login');
+                    }
+                    ?>
                     </li>
                     <li class="subrayar">
-                    <?php echo anchor('usuario/quienes_somos','Quienes Somos');?>
+                    <?php echo anchor('c_usuario/quienes_somos','Quienes Somos');?>
                     </li>
                 </div>
                     <main class="col-md-5">

@@ -32,7 +32,7 @@
                         <li><a class="dropdown-item" href="#!">Settings</a></li>
                         <?php echo anchor('admin/bitacora/','<li>Log</li>','class="dropdown-item"')?>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <?php echo anchor('c_usuario/logout/','<li>Logout<li>','class="dropdown-item"')?>
                     </ul>
                 </li>
             </ul>
