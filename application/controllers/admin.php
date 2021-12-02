@@ -86,10 +86,4 @@ class Admin extends CI_Controller {
         $this->load->view('success_user_edit');
     }
 
-    public function login()
-    {
-        // $usuario_logueado = '';
-        // $this->log->insert('inicia sesion el usuario='.$usuario, $usuario_logueado);
-    }
-
 }

@@ -64,4 +64,29 @@ class Usuario extends CI_Model {
         $this->db->replace($this->tabla, $data);
     }
 
+    public function login($usuario, $password)
+    {
+        $this->db->select('*');
+        $this->db->from($this->tabla);
+        $this->db->where('usuario', $usuario);
+        $this->db->where('pass', $password);
+        $this->db->order_by('id', 'asc');
+        $result = $this->db->get();
+        if ($result->num_rows()==1) {
+            //usuario valido
+            $user_db_data = $result->result();
+            $newdata = array(
+                'usuario' => $user_db_data[0]->usuario,
+                'perfil' => $user_db_data[0]->perfil,
+                'logged_in' => TRUE
+            );
+            $this->session->set_userdata($newdata);
+            return true;
+        } else {
+            // usuario no valido
+            $this->session->sess_destroy();
+            return false;
+        }
+    }
+
 }
