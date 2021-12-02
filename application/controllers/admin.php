@@ -23,10 +23,10 @@ class Admin extends CI_Controller {
     public function user_delete($id)
     {
         $this->load->helper('url');
-        $this->load->model('usuario');
+        $this->load->model(array('usuario', 'vigia'));
+        $usuario_logueado = 2;
+        $this->vigia->insert('se borra el usuario id='.$id, $usuario_logueado);
         $this->usuario->delete($id);
-        $usuario_logueado = '';
-        $this->log->insert('se borra el usuario id='.$id, $usuario_logueado);
         $this->index();
     }
 
@@ -43,14 +43,14 @@ class Admin extends CI_Controller {
     {
         $this->load->helper('url');
         $this->load->model('usuario');
-        // $this->log->insert();
+        $this->load->model('vigia');
         $usuario = $this->input->post('usuario');
         $password = $this->input->post('password');
         $origen = $this->input->post('origen');
         $perfil = $this->input->post('perfil');
 		$this->usuario->insert($usuario,$password, $origen, $perfil);
-        $usuario_logueado = '';
-        $this->log->insert('se crea el usuario='.$usuario, $usuario_logueado);
+        $usuario_logueado = 2;
+        $this->vigia->insert('se crea el usuario='.$usuario, $usuario_logueado);
         $this->load->view('success_user_add');
     }
 
@@ -73,23 +73,31 @@ class Admin extends CI_Controller {
     public function update_user()
     {
         $this->load->helper('url');
-        $this->load->model(array('usuario', 'log'));
-        // $this->log->insert();
+        $this->load->model(array('usuario', 'vigia'));
+        // $this->vigia->insert();
         $id = $this->input->post('id');
         $usuario = $this->input->post('usuario');
         $password = $this->input->post('password');
         $origen = $this->input->post('origen');
         $perfil = $this->input->post('perfil');
 		$this->usuario->update($id, $usuario, $password, $origen, $perfil);
-        $usuario_logueado = '';
-        $this->log->insert('se modifica el usuario id='.$id, $usuario_logueado);
+        $usuario_logueado = 2;
+        $this->vigia->insert('se modifica el usuario id='.$id, $usuario_logueado);
         $this->load->view('success_user_edit');
     }
 
     public function login()
     {
         // $usuario_logueado = '';
-        // $this->log->insert('inicia sesion el usuario='.$usuario, $usuario_logueado);
+        // $this->vigia->insert('inicia sesion el usuario='.$usuario, $usuario_logueado);
     }
+
+    public function bitacora()
+        {
+            $this->load->helper('url');
+            $this->load->model('vigia');
+            $data['vigias'] = $this->vigia->get_all_vigia();
+            $this->load->view('home_log', $data);
+        }
 
 }
